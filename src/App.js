@@ -1,9 +1,13 @@
-import React from 'react';
-
+import React from "react";
+import FilterProvider from "./state/filter/Provider";
 
 function App() {
   return (
-    <h1>Hello Word</h1>
+    <>
+      <FilterProvider>
+        <h1>Hello Word</h1>
+      </FilterProvider>
+    </>
   );
 }
 
