@@ -1,12 +1,16 @@
 import React from "react";
 import FilterProvider from "./state/filter/Provider";
+import TodoProvider from "./state/todos/Provider";
+import TodoApp from "./pages/TodoApp/TodoApp"
 
 function App() {
   return (
     <>
-      <FilterProvider>
-        <h1>Hello Word</h1>
-      </FilterProvider>
+      <TodoProvider>
+        <FilterProvider>
+          <TodoApp />
+        </FilterProvider>
+      </TodoProvider>
     </>
   );
 }
