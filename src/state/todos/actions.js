@@ -1,6 +1,6 @@
 import * as todosTypes from "./types";
 // const todos = {  id, title, completed }
-export function addtodo(title) {
+export function addTodo(title) {
   return {
     type: todosTypes.ADD_TODO,
     payload: {
@@ -9,21 +9,21 @@ export function addtodo(title) {
   };
 }
 
-export function toggletodoStatus(id, completed) {
+export function toggleTodoStatus(id, completed) {
   return {
     type: todosTypes.TOGGLE_TODO_STATUS,
     payload: { id, completed },
   };
 }
 
-export function toggletodoTitle(id, title) {
+export function toggleTodoTitle(id, title) {
   return {
     type: todosTypes.TOGGLE_TODO_TITLE,
     payload: { id, title },
   };
 }
 
-export function removetodo(id) {
+export function removeTodo(id) {
   return {
     type: todosTypes.REMOVE_TODO,
     payload: { id },
