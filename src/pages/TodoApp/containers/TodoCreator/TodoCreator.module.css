@@ -19,6 +19,7 @@
   border-radius: 10px;
   background-color: rgb(255, 180, 236);
   color: rgb(71, 0, 54);
+  text-transform: capitalize;
   font-size: 16px;
 }
 .input::placeholder {

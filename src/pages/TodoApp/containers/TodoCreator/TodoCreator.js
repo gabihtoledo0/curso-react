@@ -15,7 +15,7 @@ function TodoCreator() {
       title: yup.string().required("Você precisa preencher com alguma tarefa"),
     }),
     onSubmit: (values, formikBag) => {
-      todosDispatch(todoActions.addtodo(values.title));
+      todosDispatch(todoActions.addTodo(values.title));
       formikBag.setFieldValue("title", "");
     },
   });

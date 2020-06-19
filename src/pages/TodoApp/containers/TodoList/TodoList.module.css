@@ -2,5 +2,6 @@
   position: fixed;
   top: 140px;
   left: 0;
+  text-transform: capitalize;
 
 }
