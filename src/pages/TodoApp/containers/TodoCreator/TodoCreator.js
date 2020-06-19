@@ -1,31 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import TodoContext from "../../../../state/todos/Context";
-import * as todoActions from "../../../../state/todos/actions"
+import * as todoActions from "../../../../state/todos/actions";
+import * as yup from "yup";
+import styled from "./TodoCreator.module.css";
 
 function TodoCreator() {
-  const { todos, todosDispatch } = useContext(TodoContext);
-  useEffect(() => {
-    console.log(todos)
-  }, [todos])
-  const formik = useFormik({
+  const { todosDispatch } = useContext(TodoContext);
+  const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
     initialValues: {
-      title: ""
+      title: "",
     },
-    onSubmit: (values) => {
-      todosDispatch(todoActions.addtodo(values.title))
-    }
+    validationSchema: yup.object({
+      title: yup.string().required("Você precisa preencher com alguma tarefa"),
+    }),
+    onSubmit: (values, formikBag) => {
+      todosDispatch(todoActions.addtodo(values.title));
+      formikBag.setFieldValue("title", "");
+    },
   });
+  const inputTitle = useRef(null);
+  useEffect(() => {
+    inputTitle.current.focus();
+  }, []);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form className={styled.container} onSubmit={handleSubmit}>
       <input
         type="text"
-        {...formik.getFieldProps("title")}
+        className={styled.input}
+        {...getFieldProps("title")}
         autoComplete="off"
+        ref={inputTitle}
         placeholder="Nova Tarefa"
       />
-      <button type="submit">Adicionar tarefa</button>
+      {touched.title && errors.title ? (
+        <small className={styled.error}>{errors.title}</small>
+      ) : null}
+      <button type="submit" disabled={!isValid} className={styled.submit}>
+        Adicionar tarefa
+      </button>
     </form>
   );
 }
