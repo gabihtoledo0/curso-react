@@ -3,7 +3,7 @@ import TodoContext from "./Context";
 import todoReducer from "./reducer";
 
 function Provider({ children }) {
-  const [todos, todosDispatch] = useReducer(todoReducer, "all");
+  const [todos, todosDispatch] = useReducer(todoReducer, []);
   return (
   <TodoContext.Provider value={{ todos, todosDispatch }}>
     {children}
