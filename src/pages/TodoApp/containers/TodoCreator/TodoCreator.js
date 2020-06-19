@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import TodoContext from "../../../../state/todos/Context";
 import * as todoActions from "../../../../state/todos/actions";
 import * as yup from "yup";
-import styled from "./TodoCreator.module.css";
+import styles from "./TodoCreator.module.css";
 
 function TodoCreator() {
   const { todosDispatch } = useContext(TodoContext);
@@ -25,19 +25,19 @@ function TodoCreator() {
   }, []);
 
   return (
-    <form className={styled.container} onSubmit={handleSubmit}>
+    <form className={styles.container} onSubmit={handleSubmit}>
       <input
         type="text"
-        className={styled.input}
+        className={styles.input}
         {...getFieldProps("title")}
         autoComplete="off"
         ref={inputTitle}
         placeholder="Nova Tarefa"
       />
       {touched.title && errors.title ? (
-        <small className={styled.error}>{errors.title}</small>
+        <small className={styles.error}>{errors.title}</small>
       ) : null}
-      <button type="submit" disabled={!isValid} className={styled.submit}>
+      <button type="submit" disabled={!isValid} className={styles.submit}>
         Adicionar tarefa
       </button>
     </form>
