@@ -1,8 +1,9 @@
-import React, { useContext, useCallback, useEffect } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import TodosContext from "../../../../state/todos/Context";
 import styles from "./TodoList.module.css";
 import TodoItem from "./components/TodoItem/TodoItem";
 import * as todoActions from "../../../../state/todos/actions";
+import TodoModal from "./components/TodoModal/TodoModal";
 
 function TodoList() {
   const { todos, todosDispatch } = useContext(TodosContext);
@@ -18,10 +19,21 @@ function TodoList() {
     },
     [todosDispatch]
   );
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
+  const handleTitleUpdate = useCallback(
+    (id, title) => {
+      todosDispatch(todoActions.toggleTodoTitle(id, title));
+    },
+    [todosDispatch]
+  );
+  const [showModal, setShowModal] = useState(false);
+  const [curId, setCurId] = useState(null);
+  const handleModalOpen = useCallback((id) => {
+    setCurId(id);
+    setShowModal(true);
+  }, []);
+  const handleModalClose = useCallback(() => {
+    setShowModal(false);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -31,6 +43,7 @@ function TodoList() {
             <TodoItem
               key={todo.id}
               id={todo.id}
+              onModalOpen={handleModalOpen}
               completed={todo.completed}
               onStatusUpdate={handleStatusUpdate}
               onDelete={() => {
@@ -41,6 +54,13 @@ function TodoList() {
           );
         })}
       </ul>
+      {showModal && (
+        <TodoModal
+          id={curId}
+          onModalClose={handleModalClose}
+          onTitleUpdate={handleTitleUpdate}
+        />
+      )}
     </div>
   );
 }
