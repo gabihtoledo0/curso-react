@@ -12,7 +12,7 @@ function TodoCreator() {
       title: "",
     },
     validationSchema: yup.object({
-      title: yup.string().required("Você precisa preencher com alguma tarefa"),
+      title: yup.string().required("Você precisa preencher com alguma tarefa")
     }),
     onSubmit: (values, formikBag) => {
       todosDispatch(todoActions.addTodo(values.title));
