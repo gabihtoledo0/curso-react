@@ -2,6 +2,18 @@
   position: fixed;
   top: 140px;
   left: 0;
-  text-transform: capitalize;
+  padding: 40px 60px;
+  width: 100%;
+  height: calc(100vh - 140px);
+  text-transform: capitalize;;
+  background-color: rgb(255, 180, 236);
+  overflow-y: scroll;
+}
 
+.container ul {
+  width: 100%;
+  height: auto;
+  display: grid;
+  gap: 20px;
+  list-style: none;
 }
