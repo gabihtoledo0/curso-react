@@ -25,14 +25,15 @@ function TodoList() {
     },
     [todosDispatch]
   );
-  const [showModal, setShowModal] = useState(false);
   const [curId, setCurId] = useState(null);
-  const handleModalOpen = useCallback((id) => {
+  const [curTitle, setCurTitle] = useState('')
+  const handleModalOpen = useCallback((id, title) => {
     setCurId(id);
-    setShowModal(true);
+    setCurTitle(title);
   }, []);
   const handleModalClose = useCallback(() => {
-    setShowModal(false);
+    setCurId(null);
+    setCurTitle('');
   }, []);
 
   return (
@@ -54,9 +55,10 @@ function TodoList() {
           );
         })}
       </ul>
-      {showModal && (
+      {curId && (
         <TodoModal
           id={curId}
+          title={curTitle}
           onModalClose={handleModalClose}
           onTitleUpdate={handleTitleUpdate}
         />
