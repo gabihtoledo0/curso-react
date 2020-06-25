@@ -15,13 +15,13 @@ function TodoItem({ id, title, onDelete, completed, onStatusUpdate, onModalOpen 
     onStatusUpdate(id, isChecked);
   }, [onStatusUpdate, id, isChecked]);
   const handleModalOpen = useCallback(() => {
-    onModalOpen(id)
-  }, [onModalOpen, id])
+    onModalOpen(id, title)
+  }, [onModalOpen, id, title])
 
   return (
-    <li class={styles.item}>
-      <span class={completed ? styles.completed : null}>{title}</span>
-      <div class={styles.controlButtons}>
+    <li className={styles.item}>
+      <span className={completed ? styles.completed : null}>{title}</span>
+      <div className={styles.controlButtons}>
         <button onClick={handleModalOpen}><UpdateTitle/></button>
         <input type="checkbox" value={isChecked} onChange={handleChange} />
         <button onClick={onDelete}><DeleteTodo/></button>
