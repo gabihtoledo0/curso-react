@@ -15,8 +15,8 @@ function TodoItem({ id, title, onDelete, completed, onStatusUpdate, onModalOpen 
     onStatusUpdate(id, isChecked);
   }, [onStatusUpdate, id, isChecked]);
   const handleModalOpen = useCallback(() => {
-    onModalOpen(id, title)
-  }, [onModalOpen, id, title])
+    onModalOpen(id)
+  }, [onModalOpen, id])
 
   return (
     <li className={styles.item}>
