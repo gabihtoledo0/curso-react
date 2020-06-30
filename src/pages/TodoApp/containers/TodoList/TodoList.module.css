@@ -4,7 +4,7 @@
   left: 0;
   padding: 40px 60px;
   width: 100%;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 220px);
   text-transform: capitalize;;
   background-color: rgb(255, 180, 236);
   overflow-y: scroll;
