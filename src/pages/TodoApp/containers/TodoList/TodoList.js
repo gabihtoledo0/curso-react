@@ -26,15 +26,21 @@ function TodoList() {
     [todosDispatch]
   );
   const [curId, setCurId] = useState(null);
-  const [curTitle, setCurTitle] = useState('')
-  const handleModalOpen = useCallback((id, title) => {
+  const handleModalOpen = useCallback((id) => {
     setCurId(id);
-    setCurTitle(title);
   }, []);
   const handleModalClose = useCallback(() => {
     setCurId(null);
-    setCurTitle('');
   }, []);
+  const getTitle = useCallback(
+    (id) => {
+      const curTodo = todos.find((todo) => {
+        return todo.id === id;
+      });
+      return curTodo.title;
+    },
+    [todos]
+  );
 
   return (
     <div className={styles.container}>
@@ -58,9 +64,9 @@ function TodoList() {
       {curId && (
         <TodoModal
           id={curId}
-          title={curTitle}
           onModalClose={handleModalClose}
           onTitleUpdate={handleTitleUpdate}
+          findTitle={getTitle}
         />
       )}
     </div>
