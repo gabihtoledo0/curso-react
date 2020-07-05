@@ -4,10 +4,10 @@
   left: 0;
   width: 100%;
   height: 140px;
-  display: grid;
-  justify-content: center;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
   background-color: rgb(200, 16, 154);
 }
 
