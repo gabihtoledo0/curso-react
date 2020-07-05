@@ -4,6 +4,24 @@ import styles from "./TodoList.module.css";
 import TodoItem from "./components/TodoItem/TodoItem";
 import * as todoActions from "../../../../state/todos/actions";
 import TodoModal from "./components/TodoModal/TodoModal";
+import FilterContext from "../../../../state/filter/Context";
+
+function filteredList(list, curFilter) {
+  switch (curFilter) {
+    case "all":
+      return list;
+    case "active":
+      return list.filter((item) => {
+        return item.completed === false;
+      });
+    case "completed":
+      return list.filter((item) => {
+        return item.completed === true;
+      });
+    default:
+      throw new Error();
+  }
+}
 
 function TodoList() {
   const { todos, todosDispatch } = useContext(TodosContext);
@@ -42,10 +60,12 @@ function TodoList() {
     [todos]
   );
 
+  const { filter } = useContext(FilterContext);
+
   return (
     <div className={styles.container}>
       <ul>
-        {todos.map((todo) => {
+        {filteredList(todos, filter).map((todo) => {
           return (
             <TodoItem
               key={todo.id}

@@ -24,8 +24,7 @@ function TodoFilter() {
   }, [updateFilter, selectValue])
 
   return (
-    <footer class={styles.container}>
-      <h1>{filter}</h1>
+    <footer className={styles.container}>
       <TodoSelect
         value={selectValue}
         onOptionChange={handleOptionChange}

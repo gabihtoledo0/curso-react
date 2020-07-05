@@ -23,7 +23,7 @@ function TodoItem({ id, title, onDelete, completed, onStatusUpdate, onModalOpen 
       <span className={completed ? styles.completed : null}>{title}</span>
       <div className={styles.controlButtons}>
         <button onClick={handleModalOpen}><UpdateTitle/></button>
-        <input type="checkbox" value={isChecked} onChange={handleChange} />
+        <input type="checkbox" checked={isChecked} onChange={handleChange} />
         <button onClick={onDelete}><DeleteTodo/></button>
       </div>
     </li>
