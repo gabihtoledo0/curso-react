@@ -4,5 +4,8 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  background-color: purple;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(200, 16, 154);
 }

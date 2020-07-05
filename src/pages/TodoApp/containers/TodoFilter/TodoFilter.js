@@ -2,7 +2,7 @@ import React, { useContext, useCallback, useState, useEffect } from "react";
 import FilterContext from "../../../../state/filter/Context";
 import * as filterActions from "../../../../state/filter/actions";
 import styles from "./TodoFilter.module.css";
-import TodoSelect from "./TodoSelect/TodoSelect";
+import TodoSelect from "./components/TodoSelect/TodoSelect";
 
 function TodoFilter() {
   const { filter, filterDispatch } = useContext(FilterContext);
