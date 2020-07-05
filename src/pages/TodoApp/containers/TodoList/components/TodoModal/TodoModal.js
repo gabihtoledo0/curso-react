@@ -5,14 +5,16 @@ import styles from "./TodoModal.module.css";
 import { ReactComponent as CloseTodo } from "../../../../../../assets/icons/delete.svg";
 
 function TodoModal({ onModalClose, onTitleUpdate, id, findTitle }) {
-  const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
+  const { getFieldProps, errors, handleSubmit } = useFormik({
     initialValues: {
       title: findTitle(id),
     },
     validationSchema: yup.object({
       title: yup.string()
-        .required("Você precisa preencher com alguma tarefa"),
+      .required("Você precisa preencher com alguma tarefa"),
     }),
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, formikBag) => {
       onTitleUpdate(id, values.title);
       formikBag.setFieldValue("title", "", false);
@@ -34,10 +36,10 @@ function TodoModal({ onModalClose, onTitleUpdate, id, findTitle }) {
             autoComplete="off"
             placeholder="Novo Título"
           />
-          {touched.title && errors.title ? (
+          {errors.title ? (
             <small className={styles.error}>{errors.title}</small>
           ) : null}
-          <button type="submit" className={styles.submit} disabled={!isValid}>
+          <button type="submit" className={styles.submit}>
             Atualizar tarefa
           </button>
         </form>
